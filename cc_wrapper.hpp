@@ -2,10 +2,8 @@
 
 #include "cuckoo_trie_internal.h"
 
-#include "cuckoo_trie.h"
 #include "random.h"
 
-#include "main.h"
 #include "util.h"
 
 #include "tree.h"
