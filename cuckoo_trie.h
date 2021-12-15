@@ -5,7 +5,10 @@
 #include <pthread.h>
 #include "key_object.h"
 
-extern "C" {
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 
 #define S_OK 0
 #define S_ALREADYIN 1
@@ -42,5 +45,9 @@ EXPORT void ct_mtdbg_thread_done();
 EXPORT void ct_mtdbg_seed(uint64_t seed);
 
 }
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif
