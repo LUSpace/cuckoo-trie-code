@@ -11,11 +11,11 @@
 #include <map>
 
 // used to define the interface of all benchmarking trees
-template <class T, class P> class art_wrapper : public Tree<T, P> {
+template <class T, class P> class cc_wrapper : public Tree<T, P> {
 public:
   typedef std::pair<T, P> V;
 
-  art_wrapper() { my_tree = ct_alloc(40000000); }
+  cc_wrapper() { my_tree = ct_alloc(40000000); }
 
   void bulk_load(const V bulk_arr[], int num) {
     for (int i = 0; i < num; ++i) {
