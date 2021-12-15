@@ -11,7 +11,7 @@ struct string_key {
 
 template <class T, class P> class Tree;
 
-extern "C" void *create_tree();
+extern "C" __attribute__((visibility("default"))) void *create_tree();
 
 // used to define the interface of all benchmarking trees
 template <class T, class P> class Tree {
