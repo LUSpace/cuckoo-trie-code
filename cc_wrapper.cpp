@@ -2,7 +2,7 @@
 
 extern "C" {
 
-EXPORT void *create_tree() {
+void *create_tree() {
   return reinterpret_cast<void *>(new cc_wrapper<string_key *, char *>());
 }
 }

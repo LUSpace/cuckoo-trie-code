@@ -6,11 +6,6 @@
 #include <iostream>
 #include <map>
 
-extern "C" {
-
-EXPORT void *create_tree();
-}
-
 // used to define the interface of all benchmarking trees
 template <class T, class P> class cc_wrapper : public Tree<T, P> {
 public:
