@@ -3,7 +3,12 @@ project(CuckooTrie)
 set(CMAKE_BUILD_TYPE Release)
 
 aux_source_directory(./ DIR_LIB_SRCS)
+
 list(FILTER DIR_LIB_SRCS EXCLUDE REGEX ".*benchmark\\.c$")
+list(FILTER DIR_LIB_SRCS EXCLUDE REGEX ".*test\\.c$")
+list(FILTER DIR_LIB_SRCS EXCLUDE REGEX ".*dataset\\.c$")
+list(FILTER DIR_LIB_SRCS EXCLUDE REGEX ".*random_dist\\.c$")
+
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
