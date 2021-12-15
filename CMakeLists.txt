@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.19.6)
 project(CuckooTrie)
 set(CMAKE_BUILD_TYPE Release)
 
+set( CMAKE_VERBOSE_MAKEFILE on )
+
 aux_source_directory(./ DIR_LIB_SRCS)
 
 list(FILTER DIR_LIB_SRCS EXCLUDE REGEX ".*benchmark\\.c$")
