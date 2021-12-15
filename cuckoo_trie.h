@@ -14,6 +14,9 @@
 #define MAX_KEY_BYTES 256
 #define EXPORT __attribute__((visibility("default")))
 
+
+extern "C" {
+
 struct cuckoo_trie;
 typedef struct cuckoo_trie cuckoo_trie;
 
@@ -38,5 +41,7 @@ EXPORT void ct_mtdbg_register_thread(pthread_t thread_id);
 EXPORT void ct_mtdbg_set_enabled(int enabled);
 EXPORT void ct_mtdbg_thread_done();
 EXPORT void ct_mtdbg_seed(uint64_t seed);
+
+}
 
 #endif
