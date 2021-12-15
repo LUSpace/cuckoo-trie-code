@@ -5,6 +5,8 @@
 #include <pthread.h>
 #include "key_object.h"
 
+extern "C" {
+
 #define S_OK 0
 #define S_ALREADYIN 1
 #define S_OVERFLOW 2
@@ -13,9 +15,6 @@
 
 #define MAX_KEY_BYTES 256
 #define EXPORT __attribute__((visibility("default")))
-
-
-extern "C" {
 
 struct cuckoo_trie;
 typedef struct cuckoo_trie cuckoo_trie;
