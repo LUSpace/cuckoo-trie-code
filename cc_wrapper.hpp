@@ -2,10 +2,6 @@
 
 #include "cuckoo_trie_internal.h"
 
-#include "random.h"
-
-#include "util.h"
-
 #include "tree.h"
 #include <iostream>
 #include <map>
@@ -19,8 +15,9 @@ public:
 
   void bulk_load(const V bulk_arr[], int num) {
     for (int i = 0; i < num; ++i) {
-      ct_kv *kv = malloc(sizeof(ct_kv) + bulk_arr[i].first->length +
-                         sizeof(bulk_arr[i].second));
+      ct_kv *kv = reinterpret_cast<ct_kv *>(malloc(sizeof(ct_kv) +
+                                                   bulk_arr[i].first->length +
+                                                   sizeof(bulk_arr[i].second)));
       kv->key_size = bulk_arr[i].first->length;
       kv->value_size = sizeof(bulk_arr[i].second);
       memcpy(kv->bytes, bulk_arr[i].first->key, kv->key_size);
@@ -31,10 +28,11 @@ public:
 
   bool insert(const T &key, const P &payload) {
     if constexpr (std::is_pointer_v<T>) {
-      ct_kv *kv = malloc(sizeof(ct_kv) + key->length + sizeof(payload));
+      ct_kv *kv = reinterpret_cast<ct_kv *>(
+          malloc(sizeof(ct_kv) + key->length + sizeof(payload)));
       kv->key_size = key->length;
       kv->value_size = sizeof(payload);
-      memcpy(kv->bytes, kv->key, kv->key_size);
+      memcpy(kv->bytes, key->key, kv->key_size);
       memcpy(kv->bytes + kv->key_size, &(payload), kv->value_size);
       auto ret = ct_insert(my_tree, kv);
       if (ret == S_OK) {
@@ -50,7 +48,8 @@ public:
 
   bool search(const T &key, P *payload) const {
     if constexpr (std::is_pointer_v<T>) {
-      auto ret = ct_lookup(my_tree, key->length, key->key);
+      auto ret = ct_lookup(my_tree, key->length,
+                           reinterpret_cast<uint8_t *>(key->key));
       if (ret == NULL) {
         return false;
       }
