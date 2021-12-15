@@ -15,6 +15,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 include_directories(./)
-add_compile_options(--std=gnu18 -O3 -fvisibility=hidden -flto -fno-strict-aliasing -march=haswell -Wreturn-type -Wuninitialized -Wunused-parameter -DNDEBUG)
+add_compile_options(--std=gnu18 -O3 -flto -fno-strict-aliasing -march=haswell -Wreturn-type -Wuninitialized -Wunused-parameter -DNDEBUG)
 
 add_library(cuckoo SHARED ${DIR_LIB_SRCS})
