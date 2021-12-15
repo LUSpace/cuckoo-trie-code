@@ -1,5 +1,5 @@
 #include "cc_wrapper.hpp"
 
-EXPORT extern "C" void *create_tree() {
+extern "C" void *__attribute__((visibility("default"))) create_tree() {
   return reinterpret_cast<void *>(new cc_wrapper<string_key *, char *>());
 }
