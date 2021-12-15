@@ -44,7 +44,6 @@ EXPORT void ct_mtdbg_set_enabled(int enabled);
 EXPORT void ct_mtdbg_thread_done();
 EXPORT void ct_mtdbg_seed(uint64_t seed);
 
-}
 
 #ifdef __cplusplus
 }
