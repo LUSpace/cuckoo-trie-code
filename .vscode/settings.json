@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "random.h": "c",
+        "cuckoo_trie_internal.h": "c",
+        "cuckoo_trie.h": "c",
+        "key_object.h": "c",
+        "config.h": "c"
+    }
+}

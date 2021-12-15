@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cuckoo_trie_internal.h"
+#include "cuckoo_trie.h"
 
 #include "tree.h"
 #include <iostream>
