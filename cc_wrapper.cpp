@@ -1,5 +1,5 @@
 #include "cc_wrapper.hpp"
 
-extern "C" void *create_tree() {
-  return reinterpret_cast<void *>(new cc_wrapper<string_key *, char *>());
+extern "C" tree_api *create_tree(const tree_options_t &opt) {
+  return new cc_wrapper();
 }
