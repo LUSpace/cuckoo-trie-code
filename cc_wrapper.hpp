@@ -9,7 +9,7 @@
 // used to define the interface of all benchmarking trees
 class cc_wrapper : public tree_api {
 public:
-  cc_wrapper() { my_tree = ct_alloc(40); }
+  cc_wrapper() { my_tree = ct_alloc(40000000); }
 
   bool insert(const char *key, size_t key_sz, const char *value,
               size_t value_sz) override {
