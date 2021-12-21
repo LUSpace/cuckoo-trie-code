@@ -27,7 +27,7 @@ public:
   }
 
   bool find(const char *key, size_t sz, char *value_out) override {
-    auto ret = ct_lookup(my_tree, sz, key);
+    auto ret = ct_lookup(my_tree, sz, const_cast<uint8_t *>(key));
     if (ret == NULL) {
       return false;
     }
