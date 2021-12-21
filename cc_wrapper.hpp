@@ -27,8 +27,7 @@ public:
   }
 
   bool find(const char *key, size_t sz, char *value_out) override {
-    auto ret =
-        ct_lookup(my_tree, key->length, reinterpret_cast<uint8_t *>(key->key));
+    auto ret = ct_lookup(my_tree, sz, key);
     if (ret == NULL) {
       return false;
     }
@@ -46,55 +45,6 @@ public:
   int scan(const char *key, size_t key_sz, int scan_sz,
            char *&values_out) override {
 
-    return 0;
-  }
-
-  bool insert(const T &key, const P &payload) {
-    if constexpr (std::is_pointer_v<T>) {
-      ct_kv *kv = reinterpret_cast<ct_kv *>(
-          malloc(sizeof(ct_kv) + key->length + sizeof(payload)));
-      kv->key_size = key->length;
-      kv->value_size = sizeof(payload);
-      memcpy(kv->bytes, key->key, kv->key_size);
-      memcpy(kv->bytes + kv->key_size, &(payload), kv->value_size);
-      auto ret = ct_insert(my_tree, kv);
-      if (ret == S_OK) {
-        return true;
-      }
-      return false;
-    } else {
-      // LOG_FATAL("The key must be string key in HOT!");
-      std::cout << "The key must be string key in HOT!" << std::endl;
-      exit(-1);
-    }
-  }
-
-  bool search(const T &key, P *payload) const {
-    if constexpr (std::is_pointer_v<T>) {
-      auto ret = ct_lookup(my_tree, key->length,
-                           reinterpret_cast<uint8_t *>(key->key));
-      if (ret == NULL) {
-        return false;
-      }
-      *payload = *reinterpret_cast<P *>(ret->bytes + ret->key_size);
-      return true;
-    } else {
-      // LOG_FATAL("The key must be string key in HOT!");
-      std::cout << "The key must be string key in HOT!" << std::endl;
-      exit(-1);
-    }
-  }
-
-  // 0 means no erase, 1 means erase 1
-  bool erase(const T &key) { return false; }
-
-  bool update(const T &key, const P &payload) { return false; }
-
-  void print_min_max() {}
-
-  void get_depth_info() {}
-
-  int range_scan_by_size(const T &key, uint32_t to_scan, V *&result = nullptr) {
     return 0;
   }
 
